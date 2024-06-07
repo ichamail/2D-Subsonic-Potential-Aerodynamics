@@ -16,7 +16,7 @@ Velocity field:
 Integral Equation of velocity potential $\phi$:
 ```math
 \phi(\underline{r}_p) =
-\iint_S \frac{\sigma}{2\pi} \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_S - \frac{\mu}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_{S_w} - \frac{\mu_w}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \phi_{P_\infty}
+\iint_S \frac{\sigma}{2\pi} \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_S - \frac{\mu}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_{S_w} - \frac{\mu_w}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \phi_\infty(\underline{r}_p)
 ```
 
 
@@ -24,7 +24,7 @@ Integral Equation of velocity potential $\phi$:
 where:
    * $` \mu = \phi - \phi_i, \mu_w = \phi_U - \phi_L `$
    * $` \sigma = (\underline{e}_n \cdot \nabla)(\phi - \phi_i) `$
-   * $` \phi_{p_\infty} = \iint_{S_\infty}  \left[ (\underline{e}_n \cdot \nabla) \phi \ln{ \left( \frac{\lVert \underline{r} - \underline{r}_p \rVert}{2\pi} \right) } - \phi  (\underline{e}_n \cdot \nabla) \ln{ \left( \frac{\lVert \underline{r} - \underline{r}_p \rVert}{2\pi} \right) } \right] \mathrm{d}S `$
+   * $` \phi_\infty(\underline{r}_p) = \iint_{S_\infty}  \left[ (\underline{e}_n \cdot \nabla) \phi \ln{ \left( \frac{\lVert \underline{r} - \underline{r}_p \rVert}{2\pi} \right) } - \phi  (\underline{e}_n \cdot \nabla) \ln{ \left( \frac{\lVert \underline{r} - \underline{r}_p \rVert}{2\pi} \right) } \right] \mathrm{d}S `$
 
 
 if $` \mu = \phi - \phi_i = \phi - \phi_\infty `$ and $` \sigma = (\underline{e}_n \cdot \nabla)(\phi - \phi_i) = (\underline{e}_n \cdot \nabla)(\phi - \phi_\infty ) `$, then for $` P \in S^- `$ :
@@ -48,7 +48,7 @@ Notable Observations:
 ### Numerical Model (Panel Methods)
 
 ```math
-B_{ij} \sigma_j + C_{ij} \mu_j = 0 , \hspace{0.5cm} 0 \le i < N_s \hspace{0.5cm} and  \hspace{0.5cm} 0 \le j < N_s + N_w 
+B_{ij} \sigma_j + C_{ij} \mu_j = 0 , \qquad 0 \le i < N_s \qquad and  \qquad 0 \le j < N_s + N_w 
 ``` 
 
 where:
@@ -56,7 +56,7 @@ where:
 
    * $` C_{ij} =  \frac{1}{2\pi} \iint_{S_j}  (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_{cp_i} \rVert)} \mathrm{d}{S_j} = \frac{1}{2\pi} \iint_{S_j}  \frac{n_{cp_i}}{(t_{cp_i} - t)^2 + n_{cp_i}^2} \mathrm{d}{t_j} `$
 
-from Kutta Condition: $ \mu_w = const = \mu_U - \mu_L $
+from Kutta Condition: $` \mu_w = const = \mu_U - \mu_L `$
 ```math
 A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} = 
 \begin{cases}
@@ -68,7 +68,7 @@ A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} =
 
 
 ```math
-0 \le i < N_s  \hspace{0.5cm} 0 \le j < N_s  \hspace{0.5cm} N_s \le k < N_s + N_w
+0 \le i < N_s  \qquad 0 \le j < N_s  \qquad N_s \le k < N_s + N_w
 ```
 
 ### Features
