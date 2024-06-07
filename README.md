@@ -83,7 +83,7 @@ A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} =
 
 ## Simulation Results
 
-### Potential Flow around a 2D Circular Object
+## Potential Flow around a 2D Circular Object
 
 
 ![circle mesh in body-fixed frame](/images/potential_flow_around_2D_circular_object/circle_mesh_in_inertial_frame_of_reference.png)
@@ -97,13 +97,13 @@ A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} =
 ![circle pressure coefficient 20 panel](/images/potential_flow_around_2D_circular_object/circle_pressure_coefficient_20_panels.png)
 
 
-### Potential Flow around an Airfoil
+## Potential Flow around an Airfoil
 
 ![numerical model in inertial frame](/images/potential_flow_around_airfoil/steady_simulation/numerical_model_inertial_frame.png)
 
 ![numerical model in body-fixed frame](/images/potential_flow_around_airfoil/steady_simulation/numerical_model_bodyfixed_frame.png)
 
-### Steady Simulation with rigid wake
+## Steady Simulation with rigid wake
 
 ![rigid wake](/images/potential_flow_around_airfoil/steady_simulation/rigid_wake.png)
 
@@ -117,7 +117,7 @@ A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} =
 
 
 
-### Steady Simulation with iterative wake
+## Steady Simulation with iterative wake
 
 ![iterative wake](/images/potential_flow_around_airfoil/steady_iterative_simulation/iterative_wake.png)
 
@@ -131,7 +131,7 @@ A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} =
 
 
 
-### Unsteady Simulation with wake roll up
+## Unsteady Simulation with wake roll up
 
 ![wake rollup](/images/potential_flow_around_airfoil/unsteady_simulation/wake_rollup.png)
 
