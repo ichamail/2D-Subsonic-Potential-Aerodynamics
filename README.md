@@ -4,6 +4,9 @@
 
 ### Theoretical Model
 
+![Potential Flow Theoretical Model](https://github.com/ichamail/2D-Subsonic-Potential-Aerodynamics/assets/107580530/8ddf6ab4-904d-4ab3-a8a4-5274766b0f3b)
+
+
 #### Velocity Field
    * incompressible: $` \nabla \cdot \underline{V} = 0 `$
    * conservative: $` \underline{V} = \nabla \phi \implies \nabla \times \underline{V} = \nabla \times \nabla \phi = 0 `$ (irrotational)
