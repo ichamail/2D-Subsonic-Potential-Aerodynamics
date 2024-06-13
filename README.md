@@ -4,7 +4,7 @@
 
 ### Theoretical Model
 
-Velocity field:
+#### Velocity Field
    * incompressible: $` \nabla \cdot \underline{V} = 0 `$
    * conservative: $` \underline{V} = \nabla \phi \implies \nabla \times \underline{V} = \nabla \times \nabla \phi = 0 `$ (irrotational)
 
@@ -13,16 +13,15 @@ Velocity field:
 ```
 
 
-Integral Equation of velocity potential $\phi$:
+#### Integral Equation of velocity potential $\phi$
 ```math
 \phi(\underline{r}_p) =
-\iint_S \frac{\sigma}{2\pi} \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_S - \frac{\mu}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_{S_w} - \frac{\mu_w}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \phi_\infty(\underline{r}_p)
+\iint_S \frac{\sigma}{2\pi} \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_{S \cup S_w}  - \frac{\mu}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \phi_\infty(\underline{r}_p)
 ```
 
 
-
 where:
-   * $` \mu = \phi - \phi_i, \mu_w = \phi_U - \phi_L `$
+   * $` \mu = \phi - \phi_i `$
    * $` \sigma = (\underline{e}_n \cdot \nabla)(\phi - \phi_i) `$
    * $` \phi_\infty(\underline{r}_p) = \iint_{S_\infty}  \left[ (\underline{e}_n \cdot \nabla) \phi \ln{ \left( \frac{\lVert \underline{r} - \underline{r}_p \rVert}{2\pi} \right) } - \phi  (\underline{e}_n \cdot \nabla) \ln{ \left( \frac{\lVert \underline{r} - \underline{r}_p \rVert}{2\pi} \right) } \right] \mathrm{d}S `$
 
@@ -30,7 +29,7 @@ where:
 if $` \mu = \phi - \phi_i = \phi - \phi_\infty `$ and $` \sigma = (\underline{e}_n \cdot \nabla)(\phi - \phi_i) = (\underline{e}_n \cdot \nabla)(\phi - \phi_\infty ) `$, then for $` P \in S^- `$ :
 
 ```math
-\iint_S \frac{\sigma}{2\pi} \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_S - \frac{\mu}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_{S_w} - \frac{\mu_w}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S = 0, \hspace{0.5cm} \forall (x_p, y_p, z_p) \in S: (\underline{r} - \underline{r}_p) \cdot \underline{e}_n \to 0^+
+\iint_S \frac{\sigma}{2\pi} \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S + \iint_{S \cup S_w} - \frac{\mu}{2\pi} (\underline{e}_n \cdot \nabla) \ln{(\lVert \underline{r} - \underline{r}_p \rVert)} \mathrm{d}S = 0, \qquad \forall (x_p, y_p, z_p) \in S: (\underline{r} - \underline{r}_p) \cdot \underline{e}_n \to 0^+
 ```
 
 note: $` \sigma = (\underline{e}_n \cdot \nabla)(\phi - \phi_i) = (\underline{e}_n \cdot \nabla)(\phi - \phi_\infty ) = (\underline{e}_n \cdot \nabla)\phi - (\underline{e}_n \cdot \nabla)\phi_\infty = \underline{V} - \underline{e}_n \cdot \underline{V}_\infty = - \underline{e}_n \cdot \underline{V}_\infty `$
@@ -48,7 +47,7 @@ Notable Observations:
 ### Numerical Model (Panel Methods)
 
 ```math
-B_{ij} \sigma_j + C_{ij} \mu_j = 0 , \qquad 0 \le i < N_s \qquad and  \qquad 0 \le j < N_s + N_w 
+\sum_{j=0}^{N_s - 1} B_{ij} \sigma_j + \sum_{j=0}^{N_s + N_w - 1} C_{ij} \mu_j = 0 , \qquad 0 \le i < N_s
 ``` 
 
 where:
@@ -58,7 +57,7 @@ where:
 
 from Kutta Condition: $` \mu_w = const = \mu_U - \mu_L `$
 ```math
-A_{ij} \mu_j = - B_{ij} \sigma_j , \hspace{0.5cm} A_{ij} = 
+A_{ij} \mu_j = - B_{ij} \sigma_j , \qquad A_{ij} = 
 \begin{cases}
    C_{ij} + \sum\limits_{k} C_{ik} & \text{if $j=0$}\\
    C_{ij} & \text{if $0 < j < N_s - 1$}\\
