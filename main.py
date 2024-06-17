@@ -2,7 +2,9 @@ from potential_flow_around_2D_circular_objects import simulate_flow_around_a_2D_
 from potential_flow_around_airfoils import simulate_steady_flow_around_an_Airfoil, simulate_unsteady_flow_around_an_Airfoil
 
 
-def insert_length(name:str = "Airfoil's chord length", symbol:str="c") -> float:
+def getLengthFromUser(
+    name:str = "Airfoil's chord length", symbol:str="c"
+) -> float:
     
     length = -1.0
     
@@ -22,7 +24,7 @@ def insert_length(name:str = "Airfoil's chord length", symbol:str="c") -> float:
     
     return length
 
-def insert_bodyfixed_frame_origin(name:str="Airfoil's leading edge") -> tuple:
+def getBodyFixedFrameFromUser(name:str="Airfoil's leading edge") -> tuple:
     
     origin = (10**5, 10**5)
     
@@ -46,7 +48,7 @@ def insert_bodyfixed_frame_origin(name:str="Airfoil's leading edge") -> tuple:
     
     return origin
 
-def insert_velocity() -> float:
+def getVelocityFromUser() -> float:
     
     velocity = -1
     
@@ -66,7 +68,7 @@ def insert_velocity() -> float:
     
     return velocity
 
-def insert_angle_of_attack() -> float:
+def getAngleOfAttackFromUser() -> float:
     
     angle_of_attack = 180
     
@@ -86,7 +88,7 @@ def insert_angle_of_attack() -> float:
     
     return angle_of_attack
     
-def insert_num_of_panels(
+def getNumOfPanelsFromUser(
     name:str="surface", symbol:str="Ns", min_panels:int=5, max_panels:int=200
 ) -> int:
     
@@ -107,7 +109,7 @@ def insert_num_of_panels(
     
     return num_panels
 
-def insert_airfoil_name(airfoil_list:list[str]=["naca0012 sharp"]) -> str:
+def getAirfoilNameFromUser(airfoil_list:list[str]=["naca0012 sharp"]) -> str:
     
     is_airfoil_in_list = False
         
@@ -124,7 +126,7 @@ def insert_airfoil_name(airfoil_list:list[str]=["naca0012 sharp"]) -> str:
     
     return airfoil_name
 
-def is_steady_state():
+def getIfSteadyStateFromUser():
     
     userInput = -1
     
@@ -148,7 +150,7 @@ def is_steady_state():
     else:
         return False
 
-def insert_wake_length_in_chords() -> int:
+def getWakeLengthInChordsFromUser() -> int:
     
     wake_length = 0
     
@@ -166,7 +168,7 @@ def insert_wake_length_in_chords() -> int:
     
     return wake_length
        
-def insert_number_of_iterations(type_of_iters:str="time") -> int:
+def getNumOfIterationsFromUser(type_of_iters:str="time") -> int:
     
     iters = -1
     
@@ -211,46 +213,44 @@ def main():
     if userInput == 1:                 
         
         simulate_flow_around_a_2D_circular_object(
-            radius = insert_length(name="Circle's radius", symbol="r"),
-            center = insert_bodyfixed_frame_origin(name="Circle's center"),
-            velocity = insert_velocity(),
-            angle_of_attack = insert_angle_of_attack(),
-            num_panels = insert_num_of_panels(
+            radius = getLengthFromUser(name="Circle's radius", symbol="r"),
+            center = getBodyFixedFrameFromUser(name="Circle's center"),
+            velocity = getVelocityFromUser(),
+            angle_of_attack = getAngleOfAttackFromUser(),
+            num_panels = getNumOfPanelsFromUser(
                 name="Suraface", symbol="Ns", min_panels=5, max_panels=200
             )
         )
     
     else:
         
-        airfoil_name = insert_airfoil_name(
+        airfoil_name = getAirfoilNameFromUser(
             airfoil_list = ["naca0012 sharp"]
         )
-        
-        chord_length = insert_length(
+        chord_length = getLengthFromUser(
             name="Airfoil's chord length", symbol="c"
         )
-        
-        leading_edge_location = insert_bodyfixed_frame_origin(
+        leading_edge_location = getBodyFixedFrameFromUser(
             name="Airfoil's leading edge"
         )
-        
-        velocity = insert_velocity()
-        angle_of_attack = insert_angle_of_attack()
-        num_airfoil_panels = insert_num_of_panels(
+        velocity = getVelocityFromUser()
+        angle_of_attack = getAngleOfAttackFromUser()
+        num_airfoil_panels = getNumOfPanelsFromUser(
             name="Surface", symbol="Ns", min_panels=5, max_panels=100
         )
         
-        if is_steady_state():
+        if getIfSteadyStateFromUser():
             
-            wake_length_in_chords=insert_wake_length_in_chords()
+            wake_length_in_chords=getWakeLengthInChordsFromUser()
             
                         
-            wake_relaxation_iters = insert_number_of_iterations(
+            wake_relaxation_iters = getNumOfIterationsFromUser(
                 type_of_iters="wake relaxation"
             )
             
-            num_wake_panels = insert_num_of_panels(
-                name="Wake", symbol="Nw", min_panels=wake_relaxation_iters, max_panels=100
+            num_wake_panels = getNumOfPanelsFromUser(
+                name="Wake", symbol="Nw",
+                min_panels=wake_relaxation_iters, max_panels=100
             )
             
             
@@ -278,7 +278,7 @@ def main():
                 angle_of_attack=angle_of_attack,
                 num_airfoil_panels=num_airfoil_panels,
                 kutta_vertex_id=0,
-                num_time_steps = insert_number_of_iterations(
+                num_time_steps = getNumOfIterationsFromUser(
                     type_of_iters="time"
                 )
             )
