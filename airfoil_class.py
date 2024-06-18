@@ -3,6 +3,7 @@ import numpy as np
 from Algorithms import cosspace, DenserAtLeadingEdge, DenserAtTrailingEdge
 from is_inside_polygon import is_inside_polygon
 from scipy import interpolate
+import sys
 
 
 class Polygon:
@@ -92,7 +93,12 @@ class Airfoil(Polygon):
     def get_from_data_base(self):
         
         fileName = self.name + ".dat"
-        self.coords = self.load_airfoil(self.filePath, fileName)
+        try:
+            self.coords = self.load_airfoil(self.filePath, fileName)
+        except Exception as error:
+            print("An error occurred:", type(error).__name__, "–", error)
+            print("Airfoil doesn't exist in the database")
+            sys.exit()
     
     def invert_coords_order(self):
         
@@ -356,7 +362,7 @@ class Airfoil(Polygon):
         
     
 if __name__=="__main__":
-    name = "naca0012 sharp"
+    name = "naca0012 sarp"
     chord = 2
     airfoil = Airfoil(name, chord)
     # airfoil.new_x_spacing(10)

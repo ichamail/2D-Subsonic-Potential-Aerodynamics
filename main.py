@@ -1,3 +1,4 @@
+from os.path import isfile as doFileExists
 from potential_flow_around_2D_circular_objects import simulate_flow_around_a_2D_circular_object
 from potential_flow_around_airfoils import simulate_steady_flow_around_an_Airfoil, simulate_unsteady_flow_around_an_Airfoil
 
@@ -109,18 +110,21 @@ def getNumOfPanelsFromUser(
 
 def getAirfoilNameFromUser(airfoil_list:list[str]=["naca0012 sharp"]) -> str:
     
-    is_airfoil_in_list = False
-        
-    while not is_airfoil_in_list:
+    airfoil_in_database = False
+
+    folderPath= "Airfoils/"
+    fileExtension = ".dat"
+    
+    while not airfoil_in_database:
         print("\nType aifoil's name and press Enter")
         airfoil_name = input(
             "Airfoil Name: "
         )
         
-        if airfoil_name in airfoil_list:
-            is_airfoil_in_list = True
+        if doFileExists(folderPath + airfoil_name + fileExtension):
+            airfoil_in_database = True
         else:
-            print("\nAairfoil doesn't exist in the database")
+            print("\nAirfoil doesn't exist in the database")
     
     return airfoil_name
 
@@ -251,6 +255,7 @@ def main():
                 min_panels=wake_relaxation_iters, max_panels=100
             )
             
+            print("\n\nSimulation Results:")
             
             simulate_steady_flow_around_an_Airfoil(
                 airfoil_name = airfoil_name,
@@ -267,6 +272,8 @@ def main():
             
         
         else:
+            
+            print("\n\nSimulation Results:")
             
             simulate_unsteady_flow_around_an_Airfoil(
                 airfoil_name=airfoil_name,
