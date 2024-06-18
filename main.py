@@ -26,11 +26,10 @@ def getLengthFromUser(
 
 def getBodyFixedFrameFromUser(name:str="Airfoil's leading edge") -> tuple:
     
-    origin = (10**5, 10**5)
+    origin = (0.0, 0.0)
+    is_true = True
     
-    while (
-        abs(origin[0])+abs(origin[1]) > 10**5
-    ):
+    while is_true:
         
         print(
             "\ntype in " + name + " location (xo, yo) and press Enter"
@@ -38,9 +37,8 @@ def getBodyFixedFrameFromUser(name:str="Airfoil's leading edge") -> tuple:
         
         try:
             
-            xo = float(input("xo = "))
-            yo = float(input("yo = "))
-            origin = (xo, yo)
+            origin = (float(input("xo = ")), float(input("yo = ")))
+            is_true = False
             
         except:
             
