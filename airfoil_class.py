@@ -362,7 +362,7 @@ class Airfoil(Polygon):
         
     
 if __name__=="__main__":
-    name = "naca0012 sarp"
+    name = "naca0012 sharp"
     chord = 2
     airfoil = Airfoil(name, chord)
     # airfoil.new_x_spacing(10)
