@@ -478,8 +478,7 @@ class SurfacePanel(Source, Doublet):
         )
         
     def compute_surface_velocity(
-        self, adjacent_panel_0:Panel, adjacent_panel_1:Panel, V_fs:Vector,
-        second_order_central_finite_difference_scheme = True
+        self, adjacent_panel_0:Panel, adjacent_panel_1:Panel, V_fs:Vector
     ):
         # r_0 = (self.r[0] - self.r_cp).transform(self.A)
         # r_1 = (self.r[1] - self.r_cp).transform(self.A)
